@@ -2,9 +2,10 @@ const defaultDuration = 500;
 
 export const sleep = (duration = defaultDuration): Promise<undefined> => {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(undefined);
-    }, duration);
+    // setTimeout(() => {
+    //   resolve(undefined);
+    // }, duration);
+    setTimeout(resolve, duration, undefined);
   });
 };
 
@@ -13,7 +14,7 @@ export const block = (duration = defaultDuration) => {
   while (performance.now() < start + duration) {}
 };
 
-export const makeExpensive = <T extends (...args: any[]) => any>(
+export const makeExpensive = <T extends (...args: any) => any>(
   fn: T,
   duration = defaultDuration,
 ): ((...args: Parameters<T>) => ReturnType<T>) => {
